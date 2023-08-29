@@ -1,0 +1,146 @@
+.main {
+    background-image: url(../../assets/images/main-image.jpeg);
+    background-size: cover;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.title {
+    margin: 0;
+    font-weight: 400;
+    width: 800px;
+    color: #3C4295;
+}
+
+.button {
+    background-color: transparent;
+    border: solid #3C4295 1px;
+    font-family: 'Montserrat', sans-serif;
+    color: #3C4295;
+    padding: 8px 0;
+}
+
+@media (max-width: 1279px) {
+    .main {
+        height: 600px;
+    }
+    
+    .content {
+        gap: 20px;
+        max-width: 1023%;
+        margin: 0 100px;
+        padding-top: 200px;
+        padding-left: 15px;
+    }
+    
+    .title {
+        width: 700px;
+        font-size: 55px;
+    }
+    
+    .button {
+        font-size: 20px;
+        width: 220px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .main {
+        height: 768px;
+    }
+    
+    .content {
+        width: 1024px;
+        gap: 40px;
+        margin: 0 auto;
+        padding-top: 280px;
+        padding-left: 20px;
+    }
+    
+    .title {
+        margin: 0;
+        font-size: 70px;
+        font-weight: 400;
+        width: 800px;
+    }
+    
+    .button {
+        font-size: 25px;
+        width: 300px;
+    }
+}
+
+@media (max-width: 1279px) {
+    .main {
+        height: 600px;
+        background-size: cover;
+    }
+    
+    .content {
+        gap: 20px;
+        max-width: 1024px;
+        margin: 0 100px;
+        padding-top: 200px;
+        padding-left: 15px;
+    }
+    
+    .title {
+        width: 700px;
+        font-size: 55px;
+    }
+    
+    .button {
+        font-size: 20px;
+        width: 220px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .main {
+        height: 440px;
+    }
+    
+    .content {
+        gap: 30px;
+        max-width: 620px;
+        margin: 0 75px;
+        padding-top: 150px;
+        padding-left: 15px;
+    }
+    
+    .title {
+        width: 400px;
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        height: 430px;
+        background-position: center;
+    }
+    
+    .content {
+        gap: 30px;
+        max-width: 620px;
+        margin: 0 35px;
+        padding-top: 220px;
+        padding-left: 0;
+    }
+    
+    .title {
+        width: 300px;
+        font-size: 28px;
+    }
+
+    .button {
+        font-size: 15px;
+        width: 220px;
+        padding: 8px 0;
+        align-self: center;
+    }
+}

@@ -1,14 +1,12 @@
 import React from 'react';
-import Title from '../title/title';
+import Main from '../main/main';
 
 const title = 'test';
 
 function App() {
   return (
     <>
-      <div>
-        <Title text={title} />
-      </div>
+      <Main />
     </>
   
   );
