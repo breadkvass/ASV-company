@@ -24,30 +24,6 @@
     padding: 8px 0;
 }
 
-@media (max-width: 1279px) {
-    .main {
-        height: 600px;
-    }
-    
-    .content {
-        gap: 20px;
-        max-width: 1023%;
-        margin: 0 100px;
-        padding-top: 200px;
-        padding-left: 15px;
-    }
-    
-    .title {
-        width: 700px;
-        font-size: 55px;
-    }
-    
-    .button {
-        font-size: 20px;
-        width: 220px;
-    }
-}
-
 @media (min-width: 1280px) {
     .main {
         height: 768px;
