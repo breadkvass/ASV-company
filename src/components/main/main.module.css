@@ -26,6 +26,7 @@
 
 @media (min-width: 1280px) {
     .main {
+        background-image: url(../../assets/images/main-image-max.jpeg);
         height: 768px;
     }
     
@@ -109,7 +110,7 @@
     }
     
     .title {
-        width: 300px;
+        width: 250px;
         font-size: 28px;
     }
 
