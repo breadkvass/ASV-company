@@ -73,6 +73,10 @@
     .info {
         width: 100%;
     }
+
+    .logo {
+        width: 300px;
+    }
 }
 
 @media (max-width: 1023px) {
