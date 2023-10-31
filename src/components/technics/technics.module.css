@@ -6,6 +6,7 @@
         transparent 37%,
         #6B6F9F 37%
     );
+    color: #FFFFFF;
 }
 
 .title {
@@ -22,7 +23,6 @@
     justify-content: center;
     padding: 0;
     margin: 0;
-    color: #FFFFFF;
     
 }
 
@@ -58,10 +58,16 @@
 }
 
 .desc {
-    background-color: #6B6F9F;
-    color: #FFFFFF;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.par {
     margin: 0;
+    text-align: center;
 }
 
 .button {
@@ -159,14 +165,15 @@
 }
 
 @media (max-width: 768px) {
-    .technics {background: linear-gradient(
-        transparent 17%,
-        #6B6F9F 17% 33%,
-        transparent 33% 41%,
-        #6B6F9F 41% 59%,
-        transparent 59% 67%,
-        #6B6F9F 67%
-    );
+    .technics {
+        background: linear-gradient(
+            transparent 12%,
+            #6B6F9F 12% 32%,
+            transparent 32% 38%,
+            #6B6F9F 38% 59%,
+            transparent 59% 65%,
+            #6B6F9F 65%
+        );
         gap: 30px;
         padding: 25px;
     }
@@ -191,7 +198,7 @@
     }
     
     .name {
-        font-size: 13px;
+        font-size: 18px;
     }
     
     .features {
@@ -200,20 +207,33 @@
     }
     
     .price {
-        font-size: 13px;
+        font-size: 18px;
     }
     
     .feat {
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .desc {
-        font-size: 12px;
+        font-size: 15px;
     }
     
     .button {
         width: 150px;
         font-size: 15px;
+    }
+}
+
+@media (max-width: 410px) {
+    .technics {
+        background: linear-gradient(
+            transparent 14%,
+            #6B6F9F 14% 32%,
+            transparent 32% 38%,
+            #6B6F9F 38% 57%,
+            transparent 57% 63%,
+            #6B6F9F 63%
+        );
     }
 }
 

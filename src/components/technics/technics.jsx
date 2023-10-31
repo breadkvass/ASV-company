@@ -35,11 +35,11 @@ function Technics(props) {
         <ul className={styles.list}>
             {props.data.map(item => (<Item key={item.id} data={item} />))}
         </ul>
-        <p className={styles.desc}>
-            ASV &mdash; аренда телескопических погрузчиков с&nbsp;2009 года.<br />
-            Работаем только с&nbsp;высококвалифицированными операторами РФ.<br />
-            На все погрузчики есть регистрация в&nbsp;Гостехнадзор.
-        </p>
+        <div className={styles.desc}>
+            <p className={styles.par}>ASV &mdash; аренда телескопических погрузчиков с&nbsp;2009&nbsp;года.</p>
+            <p className={styles.par}>Работаем только с&nbsp;высококвалифицированными операторами&nbsp;РФ.</p>
+            <p className={styles.par}>На все погрузчики есть регистрация в&nbsp;Гостехнадзор.</p>
+        </div>
         <button className={styles.button}>оставить заявку</button>
     </div>
   )
