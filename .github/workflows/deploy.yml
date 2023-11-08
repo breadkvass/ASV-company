@@ -12,13 +12,13 @@ jobs:
 
     steps:
     - name: Use Node.js 18
-      uses: actions/setup-node@v2-beta
+      uses: actions/setup-node@v3
       with:
         node-version: "18.16.0"
 
     - name: Build Project
       run: |
-        npm install
+        npm ci
         npm run build
         
     - name: Deploy to Hosting
