@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Main openHandler={openModal}/>
-      <Technics data={data}/>
+      <Technics data={data} openHandler={openModal} />
       <Footer />
       {isShowModal && <ModalForm closeHandler={closeModal} /> }
     </>
