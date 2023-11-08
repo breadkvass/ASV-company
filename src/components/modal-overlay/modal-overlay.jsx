@@ -8,7 +8,7 @@ function ModalOverlay(props) {
         props.closeHandler();
     }
     return (
-        <div className={styles.overlay} onClick={onClickHandler}>
+        <div className={styles.overlay} onMouseDown={onClickHandler}>
             {props.children}
         </div>
     )

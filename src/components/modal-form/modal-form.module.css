@@ -6,6 +6,7 @@
     padding: 30px 35px;
     position: relative;
     color: #3C4295;
+    width: 300px;
 }
 
 .close_icon {
@@ -31,6 +32,7 @@
     flex-direction: column;
     gap: 10px;
     line-height: 23px;
+    font-size: 20px;
 }
 
 .input {
@@ -67,12 +69,28 @@ input:focus {
     color: red;
     margin: 0;
     font-size: 10px;
-    width: 300px;
     line-height: 10px;
 }
 
 @media (max-width: 1023px) {
-    .error {
+    .form {
         width: 210px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .label {
+        font-size: 15px;
+    }
+
+    .button {
+        font-size: 15px;
+    }
+
+    .close_icon {
+        top: -40px;
+        right: -5px;
     }
 }

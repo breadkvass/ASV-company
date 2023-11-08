@@ -24,7 +24,7 @@ function ModalForm(props) {
     const nameHandler = (e) => {
         setNameValue(e.target.value);
         const validName = /[a-zA-Zа-яёА-ЯЁ\s\-]+$/;
-        if (!validName.test(String(e.target.value))) {
+        if (!validName.test(String(e.target.value)) || nameValue < 2) {
             setinputsErrors({...inputsErrors, name: 'Используйте только буквы (не менее 2)'})
         } else {
             setinputsErrors({...inputsErrors, name: ''})
@@ -49,10 +49,6 @@ function ModalForm(props) {
         } else {
             setinputsErrors({...inputsErrors, tel: ''})
         }
-    }
-
-    const commentHandler = (e) => {
-        setCommentValue(e.target.value);
     }
 
     const [ inputsDirty, setInputsDirty ] = useState({
@@ -100,7 +96,7 @@ function ModalForm(props) {
     return ReactDOM.createPortal(
         (
         <ModalOverlay closeHandler={props.closeHandler}>
-            <form className={styles.form} onClick={stopPropagation} >
+            <form className={styles.form} onMouseDown={stopPropagation} >
                 <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler}/>
                 <h3 className={styles.title}>Оставить заявку</h3>
                 <label className={styles.label}>ФИО
