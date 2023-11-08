@@ -23,7 +23,7 @@ function Item(props) {
                 <li className={styles.feat}>Максимальная грузоподъемность:&nbsp;{props.data.load}&nbsp;кг</li>
                 <li className={styles.feat}>Снаряженная масса:&nbsp;{props.data.weight}&nbsp;кг</li>
             </ul>
-            <p className={styles.price}>от {props.data.price}</p>
+            {/* <p className={styles.price}>от {props.data.price}</p> */}
         </li>
     )
 }
@@ -40,7 +40,7 @@ function Technics(props) {
             <p className={styles.par}>Работаем только с&nbsp;высококвалифицированными операторами&nbsp;РФ.</p>
             <p className={styles.par}>На все погрузчики есть регистрация в&nbsp;Гостехнадзор.</p>
         </div>
-        <button className={styles.button}>оставить заявку</button>
+        <button className={styles.button} onClick={props.openHandler}>оставить заявку</button>
     </div>
   )
 }
