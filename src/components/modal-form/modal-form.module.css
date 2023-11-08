@@ -1,0 +1,64 @@
+.form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 35px;
+    position: relative;
+    color: #3C4295;
+}
+
+.close_icon {
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: -35px;
+    right: -35px;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 30px;
+    text-align: center;
+    border-bottom: solid 1px #3C4295;
+    margin: 0;
+    padding-bottom: 20px;
+    font-weight: 400;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 23px;
+}
+
+.input {
+    border: 0;
+    background-color: #F0F0F0;
+    height: 30px;
+    padding-left: 10px;
+}
+
+input:focus {
+    border: solid 1px #3C4295;
+}
+
+.textarea {
+    padding-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #F0F0F0;
+    height: 50px;
+    border: 0;
+}
+
+.button {
+    background-color: transparent;
+    border: solid #3C4295 1px;
+    font-family: 'Montserrat', sans-serif;
+    color: #3C4295;
+    padding: 8px 13px;
+    font-size: 25px;
+    cursor: pointer;
+}

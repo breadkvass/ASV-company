@@ -22,6 +22,7 @@
     font-family: 'Montserrat', sans-serif;
     color: #3C4295;
     padding: 8px 0;
+    cursor: pointer;
 }
 
 @media (min-width: 1280px) {
