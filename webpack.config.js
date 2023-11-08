@@ -1,8 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
@@ -15,9 +12,6 @@ module.exports = {
             use: [
               {
                 loader: require.resolve('babel-loader'),
-                options: {
-                  plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
-                },
               },
             ],
         },
@@ -35,10 +29,8 @@ module.exports = {
           ],
         },
         {
-          test: /\.(png|jp(e*)g|svg|gif)$/,
-          use: {
-            loader: 'url-loader',
-          },
+          test: /\.(png|jpeg|jpg|svg|gif)$/,
+          type: 'asset/resource',
         },
         {
           test: /\.(woff|woff2)$/,
@@ -67,7 +59,6 @@ module.exports = {
       favicon: "public/favicon.ico",
       manifest: "public/manifest.json",
     }),
-    new ReactRefreshWebpackPlugin(),
   ],
   performance: {
     hints: false,
