@@ -22,11 +22,6 @@ jobs:
       run: |
         npm install
         npm run build
-
-    - name: Zip result
-      uses: montudor/action-zip@v1
-      with:
-        args: zip -qq -r dist.zip dist
         
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
@@ -43,14 +38,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: dist
-    
-    - name: print result
-      run: ls -la
-    
-    - name: Unzip artifacts
-      uses: montudor/action-zip@v1
-      with:
-        args: unzip -qq dist.zip -d dist
+        path: dist
       
     - name: Deploy to Hosting
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
