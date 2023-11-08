@@ -8,8 +8,8 @@ function Header() {
         <div className={styles.info}>
             <img className={styles.logo} src={logo} alt='Логотип' />
             <div className={styles.contacts}>
-                <p className={styles.contact}>7786008@mail.ru</p>
-                <p className={styles.contact}>8 495 778 60 08</p> 
+                <a className={styles.contact} href='mailto:7786008@mail.ru'>7786008@mail.ru</a>
+                <a className={styles.contact} href='tel:+74957786008'>8 495 778 60 08</a> 
             </div>
         </div>
     </div>

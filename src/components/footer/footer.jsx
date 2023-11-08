@@ -8,8 +8,8 @@ function Footer() {
         <h2 className={styles.title}>Контакты</h2>
         <div className={styles.info}>
             <ul className={styles.contacts}>
-                <p className={styles.contact_left}>8 495 778 60 08</p>
-                <p className={styles.contact_left}>7786008@mail.ru</p>
+                <a className={styles.contact_left} href='tel:+74957786008'>8 495 778 60 08</a>
+                <a className={styles.contact_left} href='mailto:7786008@mail.ru'>7786008@mail.ru</a>
             </ul>
             <ul className={styles.contacts}>
                 <p className={styles.contact_right}>ИП Ветров А.С.</p>
