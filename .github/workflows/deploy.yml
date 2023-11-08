@@ -1,0 +1,30 @@
+name: Deploy to Hosting
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Use Node.js 18
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: "18.16.0"
+
+    - name: Build Project
+      run: |
+        npm install
+        npm run build
+        
+    - name: Deploy to Hosting
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: "sulimova.online/asv/"
