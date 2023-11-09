@@ -96,14 +96,14 @@ function ModalForm(props) {
     return ReactDOM.createPortal(
         (
         <ModalOverlay closeHandler={props.closeHandler}>
-            <form className={styles.form} onMouseDown={stopPropagation} >
+            <form className={styles.form} onMouseDown={stopPropagation} method="post" action="/asv-requests.php" >
                 <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler}/>
                 <h3 className={styles.title}>Оставить заявку</h3>
                 <label className={styles.label}>ФИО
                     <input className={styles.input}
                     onBlur={e => blurHandler(e)}
                     name='name'
-                    type="text"
+                    type='text'
                     onChange={e => nameHandler(e)}
                     value={nameValue}
                     />
@@ -112,7 +112,7 @@ function ModalForm(props) {
                 <label className={styles.label}>E-mail
                     <input className={styles.input}
                     onBlur={e => blurHandler(e)}
-                    type="email"
+                    type='email'
                     name='email'
                     onChange={e => emailHandler(e)}
                     value={emailValue}
@@ -122,7 +122,7 @@ function ModalForm(props) {
                 <label className={styles.label}>Телефон
                     <input className={styles.input}
                     onBlur={e => blurHandler(e)}
-                    type="tel"
+                    type='tel'
                     name='tel'
                     pattern='(\+?\d[- .]*){7,13}' required
                     onChange={e => telHandler(e)}
@@ -135,6 +135,7 @@ function ModalForm(props) {
                 <label className={styles.label}>Комментарий
                     <textarea className={styles.textarea}
                     onChange={e => setCommentValue(e.target.value)}
+                    name='comment'
                     value={сommentValue}
                     placeholder='При желании укажите необходимые сроки или другую важную для вас информацию'
                     />
