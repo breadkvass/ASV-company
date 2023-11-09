@@ -93,10 +93,15 @@ function ModalForm(props) {
         props.closeHandler();
     }
 
+    // const onSubmitHandler = (e) => {
+    //     e.stopPropagation();
+    // }
+
     return ReactDOM.createPortal(
         (
         <ModalOverlay closeHandler={props.closeHandler}>
-            <form className={styles.form} onMouseDown={stopPropagation} method="post" action="/asv-requests.php" >
+            {/* <form className={styles.form} onMouseDown={stopPropagation} method="post" action="/asv-requests.php" onSubmit={onSubmitHandler}> */}
+            <form className={styles.form} onMouseDown={stopPropagation} method="post" action="/asv-requests.php">
                 <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler}/>
                 <h3 className={styles.title}>Оставить заявку</h3>
                 <label className={styles.label}>ФИО
