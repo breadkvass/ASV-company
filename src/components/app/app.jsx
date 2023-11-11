@@ -3,14 +3,13 @@ import Main from '../main/main';
 import Technics from '../technics/technics';
 import Footer from '../footer/footer';
 import data from '../../utils/data';
-import ModalForm from '../modal-form/modal-form';
+import Modal from '../../modal/modal';
 
 function App() {
 
   const [isShowModal, setIsShowModal] = useState(false);
 
   const openModal = (e) => {
-    e.stopPropagation();
     setIsShowModal(true);
   }
 
@@ -23,7 +22,7 @@ function App() {
       <Main openHandler={openModal}/>
       <Technics data={data} openHandler={openModal} />
       <Footer />
-      {isShowModal && <ModalForm closeHandler={closeModal} /> }
+      {isShowModal && <Modal closeHandler={closeModal} /> }
     </>
   
   );

@@ -1,52 +1,29 @@
-import React, { useEffect, useCallback, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ModalOverlay from '../modal-overlay/modal-overlay';
-import closeIcon from '../../assets/images/close-icon.svg';
-import styles from './modal-form.module.css';
+import closeIcon from '../assets/images/close-icon.svg';
+import styles from './form.module.css';
 
-const modalRoot = document.getElementById("react-modals");
 const stopPropagation = e => e.stopPropagation();
 
-function ModalForm(props) {
-    const [submited, setSubmited] = useState(false);
-    const [success, setSuccess] = useState(true);
+export const SucceedResult = (props) => (
+    <div className={styles.form} onMouseDown={stopPropagation}>
+        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
+        <h3 className={styles.title}>Заявка отправлена</h3>
+        <label className={styles.label}>Благодарим за доверие! В ближайшее время мы с вами свяжемся.</label>
+    </div>
+);
 
-    const escHandler = useCallback((e) => {
-        if (e.key === "Escape") {
-            e.stopPropagation();
-            props.closeHandler();
-        }
-    }, []);
+export const FailedResult = (props) => (
+    <div className={styles.form} onMouseDown={stopPropagation}>
+        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
+        <h3 className={styles.title}>Произошла ошибка</h3>
+        <label className={styles.label}>Пожалуйста, повторите заявку позже или позвоните нам
+            <a className={styles.contact_left} href='tel:+74957786008'>8 495 778 60 08</a>.
+        </label>
+    </div>
+);
 
-    useEffect(() => {
-        document.addEventListener("keydown", escHandler, false);
-
-        return () => {
-            document.removeEventListener("keydown", escHandler, false);
-        };
-
-    }, [escHandler]);
-
-    return ReactDOM.createPortal(
-        (
-            <ModalOverlay closeHandler={props.closeHandler}>
-                {!submited ? <Form setSubmited={setSubmited} setSuccess={setSuccess} closeHandler={props.closeHandler} /> :
-                    success ? <SuccessResult /> : <FailedResult />
-                }
-            </ModalOverlay>
-        ),
-        modalRoot
-    );
-}
-
-
-
-ModalForm.propTypes = {
-    closeHandler: PropTypes.func
-}
-
-const Form = (props) => {
+export const Form = (props) => {
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
     const [telValue, setTelValue] = useState('');
@@ -126,14 +103,11 @@ const Form = (props) => {
         });
     }
 
-    const onClickHandler = (e) => {
-        e.stopPropagation();
-        props.closeHandler();
-    }
+    
 
     return (
-        <form className={styles.form} id='form' onMouseDown={stopPropagation} method="post" onSubmit={onSubmitHandler}>
-            <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler} />
+        <form className={styles.form} id='form' onMouseDown={stopPropagation} onSubmit={onSubmitHandler}>
+            <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
 
             <h3 className={styles.title}>Оставить заявку</h3>
             <label className={styles.label}>ФИО
@@ -141,6 +115,7 @@ const Form = (props) => {
                     onBlur={e => blurHandler(e)}
                     name='name'
                     type='text'
+                    required
                     onChange={e => nameHandler(e)}
                     value={nameValue}
                 />
@@ -151,6 +126,7 @@ const Form = (props) => {
                     onBlur={e => blurHandler(e)}
                     type='email'
                     name='email'
+                    required
                     onChange={e => emailHandler(e)}
                     value={emailValue}
                 />
@@ -161,7 +137,7 @@ const Form = (props) => {
                     onBlur={e => blurHandler(e)}
                     type='tel'
                     name='tel'
-                    pattern='(\+?\d[- .]*){7,13}' required
+                    required
                     onChange={e => telHandler(e)}
                     value={telValue}
                     placeholder='8 (999) 123-45-67'
@@ -182,23 +158,6 @@ const Form = (props) => {
     )
 }
 
-const SuccessResult = () => (
-    <div className={styles.form} onMouseDown={stopPropagation}>
-        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler} />
-        <h3 className={styles.title}>Заявка отправлена</h3>
-        <label className={styles.label}>Благодарим за доверие! В ближайшее время мы с вами свяжемся.</label>
-    </div>
-);
-
-const FailedResult = () => (
-    <div className={styles.form} onMouseDown={stopPropagation}>
-        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler} />
-        <h3 className={styles.title}>Произошла ошибка</h3>
-        <label className={styles.label}>Пожалуйста, повторите заявку позже или позвоните нам
-            <a className={styles.contact_left} href='tel:+74957786008'>8 495 778 60 08</a>.
-        </label>
-    </div>
-);
-
-export default ModalForm;
-
+Form.propTypes = {
+    closeHandler: PropTypes.func
+}
