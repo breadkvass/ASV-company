@@ -9,75 +9,15 @@ const modalRoot = document.getElementById("react-modals");
 const stopPropagation = e => e.stopPropagation();
 
 function ModalForm(props) {
+    const [submited, setSubmited] = useState(false);
+    const [success, setSuccess] = useState(true);
+
     const escHandler = useCallback((e) => {
         if (e.key === "Escape") {
             e.stopPropagation();
             props.closeHandler();
         }
     }, []);
-
-    const [ nameValue, setNameValue ] = useState('');
-    const [ emailValue, setEmailValue ] = useState('');
-    const [ telValue, setTelValue ] = useState('');
-    const [ сommentValue, setCommentValue ] = useState('');
-
-    const nameHandler = (e) => {
-        setNameValue(e.target.value);
-        const validName = /[a-zA-Zа-яёА-ЯЁ\s\-]+$/;
-        if (!validName.test(String(e.target.value)) || nameValue < 2) {
-            setinputsErrors({...inputsErrors, name: 'Используйте только буквы (не менее 2)'})
-        } else {
-            setinputsErrors({...inputsErrors, name: ''})
-        }
-    }
-
-    const emailHandler = (e) => {
-        setEmailValue(e.target.value);
-        const validEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        if (!validEmail.test(String(e.target.value))) {
-            setinputsErrors({...inputsErrors, email: 'Некорректный E-mail'})
-        } else {
-            setinputsErrors({...inputsErrors, email: ''})
-        }
-    }
-
-    const telHandler = (e) => {
-        setTelValue(e.target.value);
-        const validTel = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
-        if (!validTel.test(String(e.target.value)) || e.target.value.length < 11) {
-            setinputsErrors({...inputsErrors, tel: 'Некорректный номер телефона'})
-        } else {
-            setinputsErrors({...inputsErrors, tel: ''})
-        }
-    }
-
-    const [ inputsDirty, setInputsDirty ] = useState({
-        name: false,
-        email: false,
-        tel: false,
-    })
-
-    const [ inputsErrors, setinputsErrors ] = useState({
-        name: 'Поле не должно быть пустым',
-        email: 'Поле не должно быть пустым',
-        tel: 'Поле не должно быть пустым',
-    })
-
-
-
-    const blurHandler = (e) => {
-        switch (e.target.name) {
-            case 'name':
-                setInputsDirty({...inputsDirty, name: true})
-                break
-            case 'email':
-                setInputsDirty({...inputsDirty, email: true})
-                break
-            case 'tel':
-                setInputsDirty({...inputsDirty, tel: true})
-                break
-        }
-    }
 
     useEffect(() => {
         document.addEventListener("keydown", escHandler, false);
@@ -88,44 +28,136 @@ function ModalForm(props) {
 
     }, [escHandler]);
 
+    return ReactDOM.createPortal(
+        (
+            <ModalOverlay closeHandler={props.closeHandler}>
+                {!submited ? <Form setSubmited={setSubmited} setSuccess={setSuccess} closeHandler={props.closeHandler} /> :
+                    success ? <SuccessResult /> : <FailedResult />
+                }
+            </ModalOverlay>
+        ),
+        modalRoot
+    );
+}
+
+
+
+ModalForm.propTypes = {
+    closeHandler: PropTypes.func
+}
+
+const Form = (props) => {
+    const [nameValue, setNameValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
+    const [telValue, setTelValue] = useState('');
+    const [commentValue, setCommentValue] = useState('');
+
+    const [inputsDirty, setInputsDirty] = useState({
+        name: false,
+        email: false,
+        tel: false,
+    });
+
+    const [inputsErrors, setinputsErrors] = useState({
+        name: 'Поле не должно быть пустым',
+        email: 'Поле не должно быть пустым',
+        tel: 'Поле не должно быть пустым',
+    });
+
+    const nameHandler = (e) => {
+        setNameValue(e.target.value);
+        const validName = /[a-zA-Zа-яёА-ЯЁ\s\-]+$/;
+        if (!validName.test(String(e.target.value)) || nameValue < 2) {
+            setinputsErrors({ ...inputsErrors, name: 'Используйте только буквы (не менее 2)' })
+        } else {
+            setinputsErrors({ ...inputsErrors, name: '' })
+        }
+    }
+
+    const emailHandler = (e) => {
+        setEmailValue(e.target.value);
+        const validEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        if (!validEmail.test(String(e.target.value))) {
+            setinputsErrors({ ...inputsErrors, email: 'Некорректный E-mail' })
+        } else {
+            setinputsErrors({ ...inputsErrors, email: '' })
+        }
+    }
+
+    const telHandler = (e) => {
+        setTelValue(e.target.value);
+        const validTel = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+        if (!validTel.test(String(e.target.value)) || e.target.value.length < 11) {
+            setinputsErrors({ ...inputsErrors, tel: 'Некорректный номер телефона' })
+        } else {
+            setinputsErrors({ ...inputsErrors, tel: '' })
+        }
+    }
+
+    const blurHandler = (e) => {
+        switch (e.target.name) {
+            case 'name':
+                setInputsDirty({ ...inputsDirty, name: true })
+                break
+            case 'email':
+                setInputsDirty({ ...inputsDirty, email: true })
+                break
+            case 'tel':
+                setInputsDirty({ ...inputsDirty, tel: true })
+                break
+        }
+    }
+
+    const onSubmitHandler = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        fetch('https://asv.sulimova.online/asv-requests.php', {
+            method: 'POST',
+            body: new FormData(document.getElementById('form'))
+        })
+        .then(() => {
+            props.setSuccess(true);
+        })
+        .catch(() => {
+            props.setSuccess(false);
+        })
+        .finally(() => {
+            props.setSubmited(true);
+        });
+    }
+
     const onClickHandler = (e) => {
         e.stopPropagation();
         props.closeHandler();
     }
 
-    // const onSubmitHandler = (e) => {
-    //     e.stopPropagation();
-    // }
+    return (
+        <form className={styles.form} id='form' onMouseDown={stopPropagation} method="post" onSubmit={onSubmitHandler}>
+            <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler} />
 
-    return ReactDOM.createPortal(
-        (
-        <ModalOverlay closeHandler={props.closeHandler}>
-            {/* <form className={styles.form} onMouseDown={stopPropagation} method="post" action="/asv-requests.php" onSubmit={onSubmitHandler}> */}
-            <form className={styles.form} onMouseDown={stopPropagation} method="post" action="/asv-requests.php">
-                <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler}/>
-                <h3 className={styles.title}>Оставить заявку</h3>
-                <label className={styles.label}>ФИО
-                    <input className={styles.input}
+            <h3 className={styles.title}>Оставить заявку</h3>
+            <label className={styles.label}>ФИО
+                <input className={styles.input}
                     onBlur={e => blurHandler(e)}
                     name='name'
                     type='text'
                     onChange={e => nameHandler(e)}
                     value={nameValue}
-                    />
-                    {(inputsDirty.name && inputsErrors.name) && <p className={styles.error}>{inputsErrors.name}</p>}
-                </label>
-                <label className={styles.label}>E-mail
-                    <input className={styles.input}
+                />
+                {(inputsDirty.name && inputsErrors.name) && <p className={styles.error}>{inputsErrors.name}</p>}
+            </label>
+            <label className={styles.label}>E-mail
+                <input className={styles.input}
                     onBlur={e => blurHandler(e)}
                     type='email'
                     name='email'
                     onChange={e => emailHandler(e)}
                     value={emailValue}
-                    />
-                    {(inputsDirty.email && inputsErrors.email) && <p className={styles.error}>{inputsErrors.email}</p>}
-                </label>
-                <label className={styles.label}>Телефон
-                    <input className={styles.input}
+                />
+                {(inputsDirty.email && inputsErrors.email) && <p className={styles.error}>{inputsErrors.email}</p>}
+            </label>
+            <label className={styles.label}>Телефон
+                <input className={styles.input}
                     onBlur={e => blurHandler(e)}
                     type='tel'
                     name='tel'
@@ -133,29 +165,40 @@ function ModalForm(props) {
                     onChange={e => telHandler(e)}
                     value={telValue}
                     placeholder='8 (999) 123-45-67'
-                    
-                    />
-                    {(inputsDirty.tel && inputsErrors.tel) && <p className={styles.error}>{inputsErrors.tel}</p>}
-                </label>
-                <label className={styles.label}>Комментарий
-                    <textarea className={styles.textarea}
+
+                />
+                {(inputsDirty.tel && inputsErrors.tel) && <p className={styles.error}>{inputsErrors.tel}</p>}
+            </label>
+            <label className={styles.label}>Комментарий
+                <textarea className={styles.textarea}
                     onChange={e => setCommentValue(e.target.value)}
                     name='comment'
-                    value={сommentValue}
+                    value={commentValue}
                     placeholder='При желании укажите необходимые сроки или другую важную для вас информацию'
-                    />
-                </label>
-                <button className={styles.button} type='submit'>Отправить</button>
-            </form>
-        </ModalOverlay>
-    ), 
-    modalRoot
-);
+                />
+            </label>
+            <button className={styles.button} type='submit'>Отправить</button>
+        </form>
+    )
 }
 
-ModalForm.propTypes = {
-    closeHandler: PropTypes.func
-}
+const SuccessResult = () => (
+    <div className={styles.form} onMouseDown={stopPropagation}>
+        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler} />
+        <h3 className={styles.title}>Заявка отправлена</h3>
+        <label className={styles.label}>Благодарим за доверие! В ближайшее время мы с вами свяжемся.</label>
+    </div>
+);
+
+const FailedResult = () => (
+    <div className={styles.form} onMouseDown={stopPropagation}>
+        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={onClickHandler} />
+        <h3 className={styles.title}>Произошла ошибка</h3>
+        <label className={styles.label}>Пожалуйста, повторите заявку позже или позвоните нам
+            <a className={styles.contact_left} href='tel:+74957786008'>8 495 778 60 08</a>.
+        </label>
+    </div>
+);
 
 export default ModalForm;
 
