@@ -9,7 +9,7 @@ export const SucceedResult = (props) => (
     <div className={styles.form} onMouseDown={stopPropagation}>
         <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
         <h3 className={styles.title}>Заявка отправлена</h3>
-        <label className={styles.label}>Благодарим за доверие! В ближайшее время мы с вами свяжемся.</label>
+        <label className={styles.label}>Благодарим за доверие! В&nbsp;ближайшее время мы с&nbsp;вами свяжемся.</label>
     </div>
 );
 
@@ -17,8 +17,8 @@ export const FailedResult = (props) => (
     <div className={styles.form} onMouseDown={stopPropagation}>
         <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
         <h3 className={styles.title}>Произошла ошибка</h3>
-        <label className={styles.label}>Пожалуйста, повторите заявку позже или позвоните нам
-            <a className={styles.contact_left} href='tel:+74957786008'>8 495 778 60 08</a>.
+        <label className={styles.label}>Пожалуйста, повторите заявку позже или позвоните нам:
+            <a className={styles.contact} href='tel:+74957786008'>8&nbsp;495&nbsp;778&nbsp;60&nbsp;08</a>
         </label>
     </div>
 );
@@ -102,8 +102,6 @@ export const Form = (props) => {
             props.setSubmited(true);
         });
     }
-
-    
 
     return (
         <form className={styles.form} id='form' onMouseDown={stopPropagation} onSubmit={onSubmitHandler}>
