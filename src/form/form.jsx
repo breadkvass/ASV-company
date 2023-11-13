@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import closeIcon from '../assets/images/close-icon.svg';
 import styles from './form.module.css';
@@ -40,6 +40,8 @@ export const Form = (props) => {
         email: 'Поле не должно быть пустым',
         tel: 'Поле не должно быть пустым',
     });
+
+    const [ isValid, setIsValid ] = useState(true);
 
     const nameHandler = (e) => {
         setNameValue(e.target.value);
@@ -103,10 +105,17 @@ export const Form = (props) => {
         });
     }
 
+    useEffect(() => {
+        if (!nameValue || !emailValue || !telValue || inputsErrors.name || inputsErrors.email || inputsErrors.tel) {
+            setIsValid(false);
+        } else {
+            setIsValid(true);
+        }
+    }, [nameValue, emailValue, telValue]);
+
     return (
         <form className={styles.form} id='form' onMouseDown={stopPropagation} onSubmit={onSubmitHandler}>
             <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
-
             <h3 className={styles.title}>Оставить заявку</h3>
             <label className={styles.label}>ФИО
                 <input className={styles.input}
@@ -151,7 +160,7 @@ export const Form = (props) => {
                     placeholder='При желании укажите необходимые сроки или другую важную для вас информацию'
                 />
             </label>
-            <button className={styles.button} type='submit'>Отправить</button>
+            <button className={styles.button} disabled={!isValid ? true : false} type='submit'>Отправить</button>
         </form>
     )
 }

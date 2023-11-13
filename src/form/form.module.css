@@ -8,7 +8,7 @@
     color: #3C4295;
     width: 300px;
     max-height: calc(100vh - 100px);
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .close_icon {
@@ -67,6 +67,14 @@ input:focus {
     padding: 8px 13px;
     font-size: 25px;
     cursor: pointer;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #666666;
+  background-color: #dedcdc;
+  color: #666666;
+  cursor: default;
 }
 
 .error {
