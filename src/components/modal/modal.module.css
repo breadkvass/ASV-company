@@ -9,7 +9,7 @@
 
 .modal_content {
     overflow-y: auto;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100dvh - 200px);
     background-color: white;
     padding: 20px 25px;
 }
@@ -32,5 +32,9 @@
     .close_icon {
         top: -40px;
         right: -5px;
+    }
+
+    .modal_content {
+        max-height: calc(100dvh - 150px);
     }
 }
