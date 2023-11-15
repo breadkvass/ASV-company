@@ -42,14 +42,14 @@ module.exports = {
     extensions: ['.*', '.js', '.jsx'],
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: "[name].[contenthash:8].js",
     clean: true,
     // publicPath: "/assets/"
   },
   devServer: {
     hot: true,
-    static: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'build'),
     compress: true,
     port: 3000,
   },
