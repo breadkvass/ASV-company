@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import ReactDOM from 'react-dom';
-import ModalOverlay from '../components/modal-overlay/modal-overlay';
+import ModalOverlay from '../modal-overlay/modal-overlay';
 import { Form, SucceedResult, FailedResult } from '../form/form';
+import closeIcon from '../../assets/images/close-icon.svg';
 import styles from './modal.module.css';
 
 const modalRoot = document.getElementById("react-modals");
@@ -36,9 +37,14 @@ function Modal(props) {
     return ReactDOM.createPortal(
         (
             <ModalOverlay closeHandler={props.closeHandler}>
-                {!submited ? <Form setSubmited={setSubmited} setSuccess={setSuccess} closeHandler={props.closeHandler} onClickHandler={props.closeHandler} /> :
-                    success ? <SucceedResult onClickHandler={props.closeHandler} /> : <FailedResult onClickHandler={props.closeHandler} />
-                }
+                <div className={styles.modal}>
+                    <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.closeHandler} />
+                    <div className={styles.modal_content}>
+                        {!submited ? <Form setSubmited={setSubmited} setSuccess={setSuccess} /> :
+                            success ? <SucceedResult /> : <FailedResult />
+                        }
+                    </div>
+                </div>
             </ModalOverlay>
         ),
         modalRoot

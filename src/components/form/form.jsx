@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import closeIcon from '../assets/images/close-icon.svg';
 import styles from './form.module.css';
 
 const stopPropagation = e => e.stopPropagation();
 
 export const SucceedResult = (props) => (
     <div className={styles.form} onMouseDown={stopPropagation}>
-        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
         <h3 className={styles.title}>Заявка отправлена</h3>
         <label className={styles.label}>Благодарим за доверие! В&nbsp;ближайшее время мы с&nbsp;вами свяжемся.</label>
     </div>
@@ -15,7 +13,6 @@ export const SucceedResult = (props) => (
 
 export const FailedResult = (props) => (
     <div className={styles.form} onMouseDown={stopPropagation}>
-        <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
         <h3 className={styles.title}>Произошла ошибка</h3>
         <label className={styles.label}>Пожалуйста, повторите заявку позже или позвоните нам:
             <a className={styles.contact} href='tel:+74957786008'>8&nbsp;495&nbsp;778&nbsp;60&nbsp;08</a>
@@ -115,7 +112,6 @@ export const Form = (props) => {
 
     return (
         <form className={styles.form} id='form' onMouseDown={stopPropagation} onSubmit={onSubmitHandler}>
-            <img className={styles.close_icon} src={closeIcon} alt="Закрыть" onClick={props.onClickHandler} />
             <h3 className={styles.title}>Оставить заявку</h3>
             <label className={styles.label}>ФИО
                 <input className={styles.input}

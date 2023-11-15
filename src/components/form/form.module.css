@@ -1,23 +1,8 @@
 .form {
-    background-color: white;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 20px 25px;
-    position: relative;
     color: #3C4295;
-    width: 300px;
-    max-height: calc(100vh - 100px);
-    /* overflow-y: auto; */
-}
-
-.close_icon {
-    width: 30px;
-    aspect-ratio: 1 / 1;
-    position: absolute;
-    top: -35px;
-    right: -35px;
-    cursor: pointer;
 }
 
 .title {
@@ -28,8 +13,6 @@
     padding-bottom: 20px;
     font-weight: 400;
 }
-
-
 
 .label {
     display: flex;
@@ -91,10 +74,6 @@ button[disabled]{
 }
 
 @media (max-width: 1023px) {
-    .form {
-        width: 210px;
-    }
-
     .title {
         font-size: 20px;
     }
@@ -105,10 +84,5 @@ button[disabled]{
 
     .button {
         font-size: 15px;
-    }
-
-    .close_icon {
-        top: -40px;
-        right: -5px;
     }
 }

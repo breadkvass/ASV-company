@@ -3,7 +3,7 @@ import Main from '../main/main';
 import Technics from '../technics/technics';
 import Footer from '../footer/footer';
 import data from '../../utils/data';
-import Modal from '../../modal/modal';
+import Modal from '../modal/modal';
 
 function App() {
 

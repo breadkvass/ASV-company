@@ -1,0 +1,36 @@
+.modal_open {
+    overflow-y: hidden;
+}
+
+.modal {
+    width: 350px;
+    position: relative;
+}
+
+.modal_content {
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+    background-color: white;
+    padding: 20px 25px;
+}
+
+.close_icon {
+    display: block;
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: -35px;
+    right: -35px;
+    cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+    .modal {
+        width: 260px;
+    }
+    
+    .close_icon {
+        top: -40px;
+        right: -5px;
+    }
+}
